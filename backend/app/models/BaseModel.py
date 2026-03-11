@@ -1,6 +1,11 @@
+
 from abc import ABC, abstractmethod
 
 class BaseModel(ABC):
+
+    @abstractmethod
+    def getModel(self, name):
+        pass
 
     @abstractmethod
     def create(self, data):
@@ -21,7 +26,4 @@ class BaseModel(ABC):
     @abstractmethod
     def delete(self, obj_id):
         pass
-    
-    @abstractmethod
-    def getModel(self,name):
-         pass
+

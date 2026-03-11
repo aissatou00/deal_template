@@ -1,14 +1,11 @@
-import datetime
-
-from bson import ObjectId
-
+from .BaseModel import BaseModel
 from config.database import Database
-from models.BaseModel import BaseModel
-
+from bson.objectid import ObjectId
+import datetime
 
 class Deal(BaseModel):
 
-    def init(self):
+    def __init__(self):
         self.db = Database()
         self.collection = self.getModel("deals")
 

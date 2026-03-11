@@ -1,9 +1,11 @@
+
 from pymongo import MongoClient
 
 class Database:
-    def init(self, uri="mongodb://localhost:27017/", db_name="dealViewer"):
-        self.client = MongoClient(uri)
-        self.db = self.client[db_name]
+
+    def __init__(self):
+        self.client = MongoClient("mongodb://localhost:27017/")
+        self.db = self.client["dealViewer"]
 
     def get_collection(self, name):
         return self.db[name]
