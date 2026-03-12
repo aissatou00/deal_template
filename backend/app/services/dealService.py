@@ -37,8 +37,4 @@ class DealService:
         return self.model.get_all(query)
     
 
-    def get_deal_by_template(self,template):{
-        
-    }
-    
     
