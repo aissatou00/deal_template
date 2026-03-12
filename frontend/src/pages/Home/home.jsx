@@ -33,9 +33,6 @@ function Home() {
           
           <button className="create-btn">+ Create New Template</button>
         </div>
-        <h1>Welcome to Deal Manager</h1>
-        <p>Manage your deals and templates easily.</p>
-        {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
       </div>
     </>
   );
