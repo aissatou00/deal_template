@@ -19,7 +19,7 @@ class DealService:
 
     def delete_deal(self, deal_id):
         return self.model.delete(deal_id)
-    
+
     def filter_by_client(self, client_name):
         query = {"clientName": {"$regex": client_name}} 
         return self.model.get_all(query)
