@@ -3,7 +3,7 @@ import "../../layout/global.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <div className="logo">DealManager</div>
+      <div className="logo">DealViewer</div>
 
       <ul className="nav-links">
         <li><a href="/">Home</a></li>

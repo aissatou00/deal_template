@@ -1,23 +1,24 @@
+/* --- BASE & LAYOUT --- */
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #fed8b1;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fed8b1; /* Ton fond orange clair */
+  min-height: 100vh;
 }
 
-
+/* --- NAVBAR (Fixée en haut) --- */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #6f4e37;
+  background-color: #6f4e37; /* Marron foncé */
   padding: 15px 40px;
   position: fixed; 
   top: 0;
   left: 0;
-  width: 95%; 
-  z-index: 1000; 
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .nav-links {
@@ -37,76 +38,153 @@ body {
   color: #ecb176;
 }
 
+/* --- CONTAINER PRINCIPAL --- */
 .home-container {
-  flex: 1; 
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start; 
-  align-items: center; 
-  padding-top: 150px; 
-  text-align: center;
+  flex-direction: column; /* Par défaut au centre */
+  align-items: center;
+  padding-top: 120px; /* Espace pour la navbar */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
 }
 
-.home-container h1 {
-  color: #6f4e37;
-  font-size: 40px;
-  margin: 0;
+/* LOGIQUE DE DÉCALAGE : Quand un template est sélectionné */
+.home-container.shifted {
+  flex-direction: row; /* Aligne Sidebar et Contenu côte à côte */
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 40px;
 }
 
-.home-container p {
-  color: #a67b5b;
-  font-size: 18px;
-  margin-top: 10px;
-}
-
+/* --- SIDEBAR DES TEMPLATES --- */
 .templates-sidebar {
-  margin: 40px auto; 
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  width: 250px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 280px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  transition: transform 0.3s ease;
 }
 
 .templates-sidebar h2 {
-  margin: 0 0 10px 0;
-  font-size: 24px;
-  color: #333;
+  margin: 0 0 15px 0;
+  font-size: 22px;
+  color: #6f4e37;
+  text-align: left;
+  border-bottom: 2px solid #fed8b1;
+  padding-bottom: 10px;
 }
 
-
-
-
-
-
+/* --- BOUTONS TEMPLATES --- */
 .template-btn {
   border: none;
-  border-radius: 50px; 
-  padding: 12px 20px;
+  border-radius: 12px;
+  padding: 14px 20px;
   color: white;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   text-align: left;
-  transition: opacity 0.2s;
+  transition: all 0.3s ease;
+  background-color: #a67b5b; /* Couleur par défaut */
 }
 
-.template-btn:hover { opacity: 0.9; }
+.template-btn:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
 
+/* Effet de décalage spécifique au bouton sélectionné */
+.template-btn.active {
+  transform: translateX(25px); /* Se décale vers la droite */
+  box-shadow: -8px 0px 15px rgba(0,0,0,0.1);
+  background-color: #6f4e37 !important;
+  border-left: 5px solid #fed8b1;
+}
+
+/* Couleurs spécifiques (optionnel si tu veux garder tes couleurs) */
 .btn-blue { background-color: #2b82d3; }
 .btn-green { background-color: #44ab4a; }
 .btn-orange { background-color: #f18f35; }
 .btn-purple { background-color: #7a59ad; }
 
+/* --- ZONE D'AFFICHAGE DES DEALS (À DROITE) --- */
+.deals-display {
+  flex: 1;
+  margin-left: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 25px;
+  padding-right: 40px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- CARTES DES DEALS --- */
+.deal-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border-top: 5px solid #6f4e37;
+}
+
+.section-box {
+  margin-bottom: 20px;
+}
+
+.section-box h3 {
+  color: #6f4e37;
+  font-size: 18px;
+  margin-bottom: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed #decba4;
+}
+
+.section-box p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+}
+
+.section-box strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* --- BOUTON CREATE --- */
 .create-btn {
-  margin-top: 10px;
+  margin-top: 15px;
   background: none;
-  border: 1px solid #2b82d3;
-  color: #2b82d3;
-  padding: 8px;
-  border-radius: 5px;
+  border: 2px dashed #6f4e37;
+  color: #6f4e37;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.create-btn:hover {
+  background-color: #6f4e37;
+  color: white;
+}
+
+/* --- MESSAGE D'ACCUEIL --- */
+.welcome-msg {
+  margin-top: 50px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  color: #6f4e37;
+  font-style: italic;
 }
