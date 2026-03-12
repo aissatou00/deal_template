@@ -1,8 +1,8 @@
-from models.Template import Template
+from app.models.template import Template
 
-class TemplateProjectionService:
+class TemplateService:
 
-    def init(self):
+    def __init__(self):
         self.model = Template()
 
     def create_template(self, data):

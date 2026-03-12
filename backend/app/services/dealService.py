@@ -1,8 +1,8 @@
-from models.Deal import Deal 
+from app.models.deal import Deal 
 
 class DealService:
 
-    def init(self):
+    def __init__(self):
         self.model = Deal()
  
     def create_deal(self, data):
