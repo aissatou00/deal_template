@@ -6,6 +6,7 @@ body {
   flex-direction: column;
 }
 
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -36,6 +37,8 @@ body {
   color: #ecb176;
 }
 
+
+
 .home-container {
   flex: 1; 
   display: flex;
@@ -58,11 +61,10 @@ body {
   margin-top: 10px;
 }
 
-/* SECTION TEMPLATES (LATÉRAL GAUCHE) */
 .templates-sidebar {
   position: absolute;
   left: 40px;
-  top: 150px; /* Aligné avec le haut du contenu Home */
+  top: 150px;
   background: #f8f9fa;
   padding: 20px;
   border-radius: 10px;
