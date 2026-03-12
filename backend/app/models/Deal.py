@@ -1,5 +1,5 @@
-from .BaseModel import BaseModel
-from config.database import Database
+from .basemodel import BaseModel
+from app.config.database import Database
 from bson.objectid import ObjectId
 import datetime
 

@@ -1,4 +1,4 @@
-from services.dealService import DealService
+from app.services.dealservice import DealService
 
 class DealController:
     def __init__(self):
