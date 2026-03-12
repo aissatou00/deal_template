@@ -2,18 +2,11 @@ const BASE_URL = "http://127.0.0.1:8000";
 
 
 export const fetchDeals = async () => {
-<<<<<<< HEAD
-    try {
-        const response = await fetch("http://127.0.0.1:8000/deals")
-        if (!response.ok) {
-           throw new Error("Erreur : " + response.status);
-=======
   try {
     const response = await fetch(`${BASE_URL}/deals`);
 
     if (!response.ok) {
       throw new Error("Erreur : " + response.status);
->>>>>>> syrine
     }
 
     const data = await response.json();
