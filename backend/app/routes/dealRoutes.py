@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.controllers.dealcontroller import DealController
+from app.controllers.dealController import DealController
 
 router = APIRouter()
 deal_controller = DealController()

@@ -1,4 +1,4 @@
-from .basemodel import BaseModel
+from .baseModel import BaseModel
 from app.config.database import Database
 from bson.objectid import ObjectId
 

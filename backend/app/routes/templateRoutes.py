@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.controllers.templatecontroller import TemplateController
+from app.controllers.templateController import TemplateController
 
 router = APIRouter()
 template_controller = TemplateController()
