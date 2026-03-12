@@ -2,7 +2,7 @@ from app.models.Deal import Deal
 
 class DealService:
 
-    def init(self):
+    def __init__(self):
         self.model = Deal()
  
     def create_deal(self, data):
