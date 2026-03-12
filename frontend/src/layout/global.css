@@ -4,7 +4,6 @@ body {
   background-color: #fed8b1;
 }
 
-/* NAVBAR */
 
 .navbar {
   display: flex;
@@ -37,7 +36,6 @@ body {
   color: #ecb176;
 }
 
-/* HOME */
 
 .home-container {
   text-align: center;
