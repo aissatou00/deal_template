@@ -1,4 +1,4 @@
-from app.services.templateservice import TemplateService
+from app.services.templateService import TemplateService
 
 class TemplateController:
 
