@@ -3,7 +3,17 @@ from datetime import datetime
 
 db = Database()
 
+
 deals_collection = db.get_collection("deals")
+
+
+deals_collection = db.get_collection("deals")
+templates_collection = db.get_collection("templates")
+
+
+print("Nettoyage de la base de données...")
+deals_collection.delete_many({})
+templates_collection.delete_many({})
 
 deal = {
     "_id": "deal_001",
@@ -173,35 +183,40 @@ template_synthetique = {
     "createdAt": datetime.now(),
     "updatedAt": datetime.now()
 }
-
 templates_collection.insert_one(template_synthetique)
-
 
 template_commercial = {
     "_id": "tmpl_commercial_001",
     "name": "Vue commerciale",
     "code": "COMM_VIEW",
-    "description": "Vue commerciale du deal",
     "isActive": True,
-    "visibleFields": ["clientName", "contacts", "competitors", "painPoints", "nextStep", "probability"],
     "sections": [
         {
             "name": "Informations commerciales",
-            "fields": ["clientName", "contacts", "competitors", "painPoints", "nextStep", "probability"]
+            "fields": [
+                "clientName", 
+                "commercial.proposedSolution", 
+                "commercial.competitors", 
+                "commercial.painPoints", 
+                "commercial.nextStep", 
+                "probability"
+            ]
+        },
+        {
+            "name": "Équipe projet",
+            "fields": ["contacts"]
         }
     ],
     "labels": {
         "clientName": "Client",
-        "contacts": "Contacts",
-        "competitors": "Concurrents",
-        "painPoints": "Pain points",
-        "nextStep": "Prochaine étape",
-        "probability": "Probabilité"
-    },
-    "createdAt": datetime.now(),
-    "updatedAt": datetime.now()
+        "commercial.proposedSolution": "Solution proposée",
+        "commercial.competitors": "Concurrents",
+        "commercial.painPoints": "Points de blocage",
+        "commercial.nextStep": "Prochaine étape",
+        "probability": "Probabilité (%)",
+        "contacts": "Contacts clés"
+    }
 }
-
 templates_collection.insert_one(template_commercial)
 
 
