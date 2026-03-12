@@ -6,6 +6,7 @@ body {
   flex-direction: column;
 }
 
+/* NAVBAR */
 
 .navbar {
   display: flex;
@@ -38,6 +39,8 @@ body {
 }
 
 
+/* HOME */
+
 .home-container {
   flex: 1; 
   display: flex;
@@ -61,9 +64,7 @@ body {
 }
 
 .templates-sidebar {
-  position: absolute;
-  left: 40px;
-  top: 150px;
+  margin: 40px auto; 
   background: #f8f9fa;
   padding: 20px;
   border-radius: 10px;
