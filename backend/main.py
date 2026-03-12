@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.routes.dealroutes import router as deal_router
-from app.routes.templateroutes import router as template_router
+from app.routes.dealRoutes import router as deal_router
+from app.routes.templateRoutes import router as template_router
 
 app = FastAPI()
 

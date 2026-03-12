@@ -1,4 +1,4 @@
-from app.models.template import Template
+from app.models.Template import Template
 
 class TemplateService:
 
