@@ -28,9 +28,15 @@ function Home() {
       <Navbar />
 
       <div className="home-container">
-        <h1>Welcome to Deal Manager</h1>
-        <p>Manage your deals and templates easily.</p>
-        {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
+        <div className="templates-sidebar">
+          <h2>Templates</h2>
+          <button className="template-btn btn-blue">Vue Synthétique</button>
+          <button className="template-btn btn-green">Vue Commerciale</button>
+          <button className="template-btn btn-orange">Vue Financière</button>
+          <button className="template-btn btn-purple">Vue Direction</button>
+          
+          <button className="create-btn">+ Create New Template</button>
+        </div>
       </div>
     </>
   );
