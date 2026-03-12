@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/NavBar/NavBar";
 import { fetchDeals } from "../../services/Deals";
+import { fetchTemplates } from "../../services/Templates";
 
 function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getDeals = async () => {
+    const getData = async () => {
       try {
-        console.log("avant fetch: ");
-        const data = await fetchDeals();
-        console.log("data : ", data);
+        const deals = await fetchDeals();
+        console.log("deals :", deals);
+
+        const templates = await fetchTemplates();
+        console.log("templates :", templates);
+
       } catch (err) {
         setError(err.message);
       }
     };
 
-    getDeals();
+    getData();
   }, []); 
 
   return (
