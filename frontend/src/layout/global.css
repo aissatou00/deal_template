@@ -6,6 +6,8 @@ body {
   flex-direction: column;
 }
 
+/* NAVBAR */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -35,6 +37,8 @@ body {
 .nav-links a:hover {
   color: #ecb176;
 }
+
+/* HOME */
 
 .home-container {
   flex: 1; 
