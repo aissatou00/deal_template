@@ -20,7 +20,7 @@ class TemplateDealsAdapter:
         value = obj
 
         for key in keys:
-            if type(value)==dict:
+            if type(value) == dict:
                 value = value.get(key)
             else:
                 return None
