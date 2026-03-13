@@ -361,7 +361,7 @@ body {
   display: inline-block;
 }
 
-.badge.NEGOTIATION { 
+.badge { 
   background: #f1c40f; 
   color: #000; 
 }
