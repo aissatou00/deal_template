@@ -20,7 +20,7 @@ class Deal(BaseModel):
         return list(self.collection.find(filter))
 
     def get_by_id(self, obj_id):
-        return self.collection.find_one({"_id": ObjectId(obj_id)})
+        return self.collection.find_one({"_id": obj_id})
 
     def update(self, obj_id, data):
         return self.collection.update_one(
