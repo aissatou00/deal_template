@@ -178,10 +178,10 @@ body {
   color: white;
 }
 
-/* Bloc de filtres en haut à droite */
+
 .filter-overlay {
   position: fixed;
-  top: 90px; /* Ajuste selon la hauteur de ta navbar */
+  top: 90px; 
   right: 20px;
   z-index: 1000;
   background: #ffffff;
