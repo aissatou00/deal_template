@@ -46,25 +46,23 @@ function Home() {
 
   const filteredDeals = deals.filter(deal => {
     const matchesClient = clientFilter === "" || deal.clientName === clientFilter;
-    
     const dealDate = new Date(deal[dateType]);
-    
     if (startDate) {
       const start = new Date(startDate);
       start.setHours(0, 0, 0, 0);
       if (dealDate < start) return false;
     }
-    
     if (endDate) {
       const end = new Date(endDate);
       end.setHours(23, 59, 59, 999);
       if (dealDate > end) return false;
     }
-
     return matchesClient;
   });
 
-  const clients = [...new Set(deals.map(d => d.clientName))];
+  const allFields = selectedTemplate 
+    ? selectedTemplate.sections.reduce((acc, section) => [...acc, ...section.fields], [])
+    : [];
 
   return (
     <>
@@ -73,12 +71,12 @@ function Home() {
       <div className="filter-overlay">
         <select value={clientFilter} onChange={(e) => setClientFilter(e.target.value)}>
           <option value="">Tous les clients</option>
-          {clients.map(c => <option key={c} value={c}>{c}</option>)}
+          {[...new Set(deals.map(d => d.clientName))].map(c => <option key={c} value={c}>{c}</option>)}
         </select>
         <div className="date-group">
           <select value={dateType} onChange={(e) => setDateType(e.target.value)}>
-            <option value="createdAt">Par date de création</option>
-            <option value="expectedCloseDate">Par date de closing</option>
+            <option value="createdAt">Création</option>
+            <option value="expectedCloseDate">Closing</option>
           </select>
           <div className="date-inputs">
             <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
@@ -99,37 +97,29 @@ function Home() {
               {t.name}
             </button>
           ))}
-          <button className="create-btn" onClick={() => window.location.href='/templates'}>
-            + Create New Template
-          </button>
         </div>
 
         <div className="deals-display">
           {selectedTemplate ? (
-            filteredDeals.length > 0 ? (
-              filteredDeals.map((deal) => (
-                <div key={deal._id} className="deal-card">
-                  <h2>{deal.title}</h2>
-                  {selectedTemplate.sections.map((section, sIdx) => (
-                    <div key={sIdx} className="section-box">
-                      <h3>{section.name}</h3>
-                      <div className="fields-grid">
-                        {section.fields.map((field) => (
-                          <p key={field}>
-                            <strong>{selectedTemplate.labels?.[field] || field}:</strong>{" "}
-                            {renderValue(getValue(deal, field))}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ))
-            ) : (
-              <div className="no-data">Aucun deal trouvé pour ces critères.</div>
-            )
+            <div className="vertical-table-wrapper">
+              {filteredDeals.map((deal) => (
+                <table key={deal._id} className="vertical-deal-table">
+                  <thead>
+                    <tr><th colSpan="2">{deal.title}</th></tr>
+                  </thead>
+                  <tbody>
+                    {allFields.map((field, idx) => (
+                      <tr key={idx}>
+                        <td className="field-label">{selectedTemplate.labels?.[field] || field}</td>
+                        <td className="field-value">{renderValue(getValue(deal, field))}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ))}
+            </div>
           ) : (
-            <div className="no-data">Sélectionnez un template à gauche pour afficher les deals.</div>
+            <div className="no-data">Sélectionnez un template pour afficher les deals.</div>
           )}
         </div>
       </div>

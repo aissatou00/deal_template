@@ -1,4 +1,4 @@
-
+/* --- BASE --- */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -6,7 +6,7 @@ body {
   min-height: 100vh;
 }
 
-
+/* --- NAVBAR --- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -17,7 +17,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 3000;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
@@ -38,24 +38,22 @@ body {
   color: #ecb176;
 }
 
-
+/* --- HOME PAGE (Sidebar & Views) --- */
 .home-container {
   display: flex;
   flex-direction: column; 
   align-items: center;
   padding-top: 120px;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
 }
-
 
 .home-container.shifted {
   flex-direction: row; 
   align-items: flex-start;
   justify-content: flex-start;
   padding-left: 40px;
+  gap: 30px;
 }
-
 
 .templates-sidebar {
   background: #ffffff;
@@ -63,21 +61,22 @@ body {
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   width: 280px;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  transition: transform 0.3s ease;
+  position: sticky;
+  top: 120px;
 }
 
 .templates-sidebar h2 {
   margin: 0 0 15px 0;
   font-size: 22px;
   color: #6f4e37;
-  text-align: left;
   border-bottom: 2px solid #fed8b1;
   padding-bottom: 10px;
+  text-align: left;
 }
-
 
 .template-btn {
   border: none;
@@ -88,13 +87,8 @@ body {
   font-size: 15px;
   cursor: pointer;
   text-align: left;
-  transition: all 0.3s ease;
   background-color: #a67b5b; 
-}
-
-.template-btn:hover {
-  transform: scale(1.02);
-  filter: brightness(1.1);
+  transition: 0.3s;
 }
 
 .template-btn.active {
@@ -104,18 +98,30 @@ body {
   border-left: 5px solid #fed8b1;
 }
 
+/* BOUTON NOUVEAU TEMPLATE (DANS LA SIDEBAR HOME) */
+.create-btn {
+  margin-top: 15px;
+  background: none;
+  border: 2px dashed #6f4e37;
+  color: #6f4e37;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+}
 
-.btn-blue { background-color: #2b82d3; }
-.btn-green { background-color: #44ab4a; }
-.btn-orange { background-color: #f18f35; }
-.btn-purple { background-color: #7a59ad; }
+.create-btn:hover {
+  background-color: #6f4e37;
+  color: white;
+}
 
-
+/* --- DEALS DISPLAY (HOME) --- */
 .deals-display {
   flex: 1;
-  margin-left: 50px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 25px;
   padding-right: 40px;
   animation: fadeIn 0.6s ease-out;
@@ -126,64 +132,151 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-
-.deal-card {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  border-top: 5px solid #6f4e37;
-}
-
-.section-box {
-  margin-bottom: 20px;
-}
-
-.section-box h3 {
-  color: #6f4e37;
-  font-size: 18px;
-  margin-bottom: 12px;
-  padding-bottom: 5px;
-  border-bottom: 1px dashed #decba4;
-}
-
-.section-box p {
-  margin: 8px 0;
+.vertical-deal-table {
+  width: 100%;
+  max-width: 800px;
+  border-collapse: collapse;
+  background: #6f4e37; 
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  color: white;
   font-size: 14px;
-  color: #555;
-  display: flex;
-  justify-content: space-between;
 }
 
-.section-box strong {
-  color: #333;
-  font-weight: 600;
+.vertical-deal-table th {
+  background: rgba(0,0,0,0.2);
+  color: #fed8b1;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
 }
 
+.vertical-deal-table td {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
-.create-btn {
-  margin-top: 15px;
-  background: none;
-  border: 2px dashed #6f4e37;
-  color: #6f4e37;
-  padding: 10px;
-  border-radius: 10px;
+.field-label {
   font-weight: bold;
+  color: #fed8b1;
+  width: 35%;
+  background: rgba(0,0,0,0.15);
+}
+
+/* --- MANAGER PAGES (DEAL & TEMPLATE) --- */
+.deals-manager-container,
+.manager-container,
+.templates-manager-container {
+  padding-top: 130px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* CENTRE TOUT LE CONTENU */
+}
+
+.manager-header {
+  position: relative;
+  width: 90%;
+  max-width: 1100px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center; /* CENTRE LE TITRE */
+  align-items: center;
+}
+
+.manager-header h1 {
+  margin: 0;
+  font-size: 3rem; 
+  color: #6f4e37;
+  font-weight: bold;
+  white-space: nowrap; /* EMPÊCHE LE TITRE DE SE COUPER */
+}
+
+/* BOUTON AJOUTER (HAUT À DROITE) */
+.add-btn { 
+  position: absolute;
+  right: 0;
+  background: #27ae60; 
+  color: white; 
+  padding: 12px 24px; 
+  border-radius: 5px; 
+  border: none; 
   cursor: pointer;
+  font-weight: bold;
   transition: 0.3s;
 }
 
-.create-btn:hover {
-  background-color: #6f4e37;
+.add-btn:hover { filter: brightness(1.1); }
+
+/* --- TABLES (DEAL & TEMPLATE MANAGER) --- */
+.manager-table, 
+.templates-table,
+.deals-table {
+  width: 90%;
+  max-width: 1100px;
+  border-collapse: collapse;
+  background: #6f4e37;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  color: white;
+  margin: 0 auto 50px auto; /* CENTRE LE TABLEAU */
+}
+
+.manager-table th, 
+.templates-table th,
+.deals-table th {
+  background: rgba(0,0,0,0.3);
+  color: #fed8b1;
+  text-transform: uppercase;
+  padding: 20px;
+}
+
+.manager-table td, 
+.templates-table td,
+.deals-table td {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- ACTIONS & BADGES --- */
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 100px; 
   color: white;
 }
 
+.edit-btn { background: #3498db; }
+.delete-btn { background: #c0392b; }
 
+.badge {
+  padding: 6px 15px;
+  border-radius: 20px; 
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.badge.NEGOTIATION { background: #f1c40f; color: #000; }
+
+/* --- FILTRES --- */
 .filter-overlay {
   position: fixed;
   top: 90px; 
   right: 20px;
-  z-index: 1000;
+  z-index: 2500;
   background: #ffffff;
   padding: 15px;
   border-radius: 8px;
@@ -195,199 +288,9 @@ body {
   border: 1px solid #fed8b1;
 }
 
-.filter-overlay input, 
-.filter-overlay select {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  outline: none;
-}
-
-.filter-overlay input:focus {
-  border-color: #6f4e37;
-}
-
-.date-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.date-inputs {
-  display: flex;
-  gap: 5px;
-}
-
-.date-inputs input {
-  width: 50%;
-  font-size: 12px;
-}
-
-.deals-manager-container {
-  padding: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.manager-header {
+.no-data {
   text-align: center;
-  margin-bottom: 50px;
-  width: 100%;
-}
-
-.manager-header h1 {
-  margin: 0;
-  font-size: 3.5rem; 
   color: #6f4e37;
   font-weight: bold;
-}
-
-.add-btn { 
-  position: absolute; 
-  top: -20px; 
-  right: 0; 
-  background: #27ae60; 
-  color: white; 
-  padding: 12px 24px; 
-  border-radius: 5px; 
-  border: none; 
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.deals-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #6f4e37; 
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-.deals-table th, .deals-table td {
-  padding: 20px 15px;
-  text-align: center; 
-  vertical-align: middle;
-  border-bottom: 1px solid #eee;
-}
-
-.deals-table th {
-  background: #6f4e37;
-  color: #fed8b1;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-.edit-btn { 
-  background: #3498db; 
-  color: white; 
-  border: none; 
-  padding: 8px 16px; 
-  border-radius: 5px; 
-  margin-right: 8px; 
-  cursor: pointer; 
-  font-size: 1rem;
-}
-
-.delete-btn { 
-  background: #c0392b; 
-  color: white; 
-  border: none; 
-  padding: 8px 16px; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  font-size: 1rem;
-}
-
-.badge {
-  padding: 6px 15px;
-  border-radius: 20px; 
-  font-size: 12px;
-  font-weight: bold;
-  display: inline-block;
-}
-
-.badge.NEGOTIATION { 
-  background: #f1c40f; 
-  color: #000; 
-}
-
-.actions-cell {
-  display: flex;
-  justify-content: center;
-  gap: 10px;               
-  align-items: center;
-}
-
-.edit-btn, .delete-btn {
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  min-width: 100px; 
-  transition: opacity 0.2s;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.edit-btn {
-  background: #3498db;
-  color: white;
-}
-
-.delete-btn {
-  background: #c0392b;
-  color: white;
-}
-
-.edit-btn:hover, .delete-btn:hover {
-  opacity: 0.85;
-}
-
-
-.manager-container, .templates-manager-container {
-  padding-top: 50px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.manager-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.manager-table, .templates-table {
-  width: 90%;
-  max-width: 1100px;
-  border-collapse: collapse;
-  background: #6f4e37;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.manager-table th, .manager-table td,
-.templates-table th, .templates-table td {
-  padding: 20px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-}
-
-.manager-table th, .templates-table th {
-  background: #6f4e37;
-  color: #fed8b1;
-  text-transform: uppercase;
+  margin-top: 50px;
 }
