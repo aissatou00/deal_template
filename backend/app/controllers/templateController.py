@@ -25,3 +25,6 @@ class TemplateController:
 
     def filter_by_period(self, start_date, end_date):
         return self.service.filter_by_period(start_date, end_date)
+
+    def get_all_template_fields(self):
+        return self.service.get_all_template_fields()

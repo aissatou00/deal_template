@@ -37,3 +37,11 @@ class TemplateService:
         return self.model.get_all(query)
 
     
+    def get_all_template_fields(self):
+        templates = self.get_all_templates()
+        all_fields = set()
+        for tmpl in templates:
+            for section in tmpl.get("sections", []):
+                for field in section.get("fields", []):
+                    all_fields.add(field)
+        return list(all_fields)
