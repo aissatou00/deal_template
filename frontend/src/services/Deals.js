@@ -138,3 +138,21 @@ export const filterDealsByPeriod = async (startDate, endDate) => {
     throw error;
   }
 };
+
+
+export const fetchDealByTemplate = async (templateId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/deals/dealByTemplate/${templateId}`);
+
+    if (!response.ok) {
+      throw new Error("Erreur : " + response.status);
+    }
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
