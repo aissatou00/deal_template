@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import pour la navigation
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/NavBar/NavBar";
 import { fetchDeals } from "../../services/Deals";
 import { fetchTemplates } from "../../services/Templates";
@@ -8,7 +8,7 @@ function Home() {
   const [deals, setDeals] = useState([]);
   const [templates, setTemplates] = useState([]);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
-  const navigate = useNavigate(); // Hook de navigation
+  const navigate = useNavigate(); 
 
   const [clientFilter, setClientFilter] = useState("");
   const [dateType, setDateType] = useState("createdAt");
