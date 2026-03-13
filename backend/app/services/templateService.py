@@ -1,8 +1,8 @@
-from models.Template import Template
+from app.models.Template import Template
 
-class TemplateProjectionService:
+class TemplateService:
 
-    def init(self):
+    def __init__(self):
         self.model = Template()
 
     def create_template(self, data):
@@ -35,3 +35,13 @@ class TemplateProjectionService:
     def filter_by_period(self, start_date, end_date):
         query = {"createdAt": {"$gte": start_date, "$lte": end_date}}
         return self.model.get_all(query)
+
+    
+    def get_all_template_fields(self):
+        templates = self.get_all_templates()
+        all_fields = set()
+        for tmpl in templates:
+            for section in tmpl.get("sections", []):
+                for field in section.get("fields", []):
+                    all_fields.add(field)
+        return list(all_fields)

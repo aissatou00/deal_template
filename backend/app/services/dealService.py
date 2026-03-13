@@ -1,8 +1,8 @@
-from models.Deal import Deal 
+from app.models.Deal import Deal 
 
 class DealService:
 
-    def init(self):
+    def __init__(self):
         self.model = Deal()
  
     def create_deal(self, data):
@@ -19,7 +19,7 @@ class DealService:
 
     def delete_deal(self, deal_id):
         return self.model.delete(deal_id)
-    
+
     def filter_by_client(self, client_name):
         query = {"clientName": {"$regex": client_name}} 
         return self.model.get_all(query)
@@ -35,3 +35,6 @@ class DealService:
     def filter_by_period(self, start_date, end_date):
         query = {"createdAt": {"$gte": start_date, "$lte": end_date}}
         return self.model.get_all(query)
+    
+
+    

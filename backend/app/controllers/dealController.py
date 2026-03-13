@@ -1,8 +1,10 @@
-from services.dealService import DealService
+from app.adapter.TemplateDealsAdapter import TemplateDealsAdapter
+from app.services.dealService import DealService
 
 class DealController:
     def __init__(self):
         self.service = DealService()  
+        self.adapter = TemplateDealsAdapter()
 
     def create_deal(self, data):
         return self.service.create_deal(data)
@@ -24,3 +26,8 @@ class DealController:
 
     def filter_by_period(self, start_date, end_date):
         return self.service.filter_by_period(start_date, end_date)
+    
+    def get_deal_by_template(self, template_id):
+        return self.adapter.template_deal_adapter(template_id)
+    
+

@@ -1,0 +1,624 @@
+/* --- BASE --- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fed8b1; 
+  min-height: 100vh;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #6f4e37; 
+  padding: 15px 40px;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fed8b1;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ecb176;
+}
+
+/* --- HOME PAGE (Sidebar & Views) --- */
+.home-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  padding-top: 120px;
+  width: 100%;
+}
+
+.home-container.shifted {
+  flex-direction: row; 
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 40px;
+  gap: 30px;
+}
+
+.templates-sidebar {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 280px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: sticky;
+  top: 120px;
+}
+
+.templates-sidebar h2 {
+  margin: 0 0 15px 0;
+  font-size: 22px;
+  color: #6f4e37;
+  border-bottom: 2px solid #fed8b1;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.template-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: left;
+  background-color: #a67b5b; 
+  transition: 0.3s;
+}
+
+.template-btn.active {
+  transform: translateX(25px); 
+  box-shadow: -8px 0px 15px rgba(0,0,0,0.1);
+  background-color: #6f4e37 !important;
+  border-left: 5px solid #fed8b1;
+}
+
+/* BOUTON NOUVEAU TEMPLATE (DANS LA SIDEBAR HOME) */
+.create-btn {
+  margin-top: 15px;
+  background: none;
+  border: 2px dashed #6f4e37;
+  color: #6f4e37;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.create-btn:hover {
+  background-color: #6f4e37;
+  color: white;
+}
+
+/* --- DEALS DISPLAY (HOME) --- */
+.deals-display {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-right: 40px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vertical-deal-table {
+  width: 100%;
+  max-width: 800px;
+  border-collapse: collapse;
+  background: #6f4e37; 
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  color: white;
+  font-size: 14px;
+}
+
+.vertical-deal-table th {
+  background: rgba(0,0,0,0.2);
+  color: #fed8b1;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.vertical-deal-table td {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.field-label {
+  font-weight: bold;
+  color: #fed8b1;
+  width: 35%;
+  background: rgba(0,0,0,0.15);
+}
+
+/* --- MANAGER PAGES (DEAL & TEMPLATE) --- */
+.deals-manager-container,
+.manager-container,
+.templates-manager-container {
+  padding-top: 130px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* CENTRE TOUT LE CONTENU */
+}
+
+.manager-header {
+  position: relative;
+  width: 90%;
+  max-width: 1100px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center; /* CENTRE LE TITRE */
+  align-items: center;
+}
+
+.manager-header h1 {
+  margin: 0;
+  font-size: 3rem; 
+  color: #6f4e37;
+  font-weight: bold;
+  white-space: nowrap; /* EMPÊCHE LE TITRE DE SE COUPER */
+}
+
+/* BOUTON AJOUTER (HAUT À DROITE) */
+.add-btn { 
+  position: absolute;
+  right: 0;
+  background: #27ae60; 
+  color: white; 
+  padding: 12px 24px; 
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.add-btn:hover { filter: brightness(1.1); }
+
+/* --- TABLES (DEAL & TEMPLATE MANAGER) --- */
+.manager-table, 
+.templates-table,
+.deals-table {
+  width: 90%;
+  max-width: 1100px;
+  border-collapse: collapse;
+  background: #6f4e37;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  color: white;
+  margin: 0 auto 50px auto; /* CENTRE LE TABLEAU */
+}
+
+.manager-table th, 
+.templates-table th,
+.deals-table th {
+  background: rgba(0,0,0,0.3);
+  color: #fed8b1;
+  text-transform: uppercase;
+  padding: 20px;
+}
+
+.manager-table td, 
+.templates-table td,
+.deals-table td {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- ACTIONS & BADGES --- */
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 100px; 
+  color: white;
+}
+
+.edit-btn { background: #3498db; }
+.delete-btn { background: #c0392b; }
+
+.badge {
+  padding: 6px 15px;
+  border-radius: 20px; 
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.badge.NEGOTIATION { background: #f1c40f; color: #000; }
+
+/* --- FILTRES --- */
+.filter-overlay {
+  position: fixed;
+  top: 90px; 
+  right: 20px;
+  z-index: 2500;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 280px;
+  border: 1px solid #fed8b1;
+}
+
+.no-data {
+  text-align: center;
+  color: #6f4e37;
+  font-weight: bold;
+}
+
+.add-btn { 
+  position: absolute; 
+  top: -20px; 
+  right: 0; 
+  background: #27ae60; 
+  color: white; 
+  padding: 12px 24px; 
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.deals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #6f4e37; 
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.deals-table th, .deals-table td {
+  padding: 20px 15px;
+  text-align: center; 
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+}
+
+.deals-table th {
+  background: #6f4e37;
+  color: #fed8b1;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.edit-btn { 
+  background: #3498db; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 5px; 
+  margin-right: 8px; 
+  cursor: pointer; 
+  font-size: 1rem;
+}
+
+.delete-btn { 
+  background: #c0392b; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 1rem;
+}
+
+.badge {
+  padding: 6px 15px;
+  border-radius: 20px; 
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.badge { 
+  background: #f1c40f; 
+  color: #000; 
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 10px;               
+  align-items: center;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 100px; 
+  transition: opacity 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-btn {
+  background: #3498db;
+  color: white;
+}
+
+.delete-btn {
+  background: #c0392b;
+  color: white;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 0.85;
+}
+
+
+.manager-container, .templates-manager-container {
+  padding-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.manager-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.manager-table, .templates-table {
+  width: 90%;
+  max-width: 1100px;
+  border-collapse: collapse;
+  background: #6f4e37;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.manager-table th, .manager-table td,
+.templates-table th, .templates-table td {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.manager-table th, .templates-table th {
+  background: #6f4e37;
+  color: #fed8b1;
+  text-transform: uppercase;
+}
+
+/* =========================
+   DEAL FORM
+========================= */
+
+.deal-form-container {
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.deal-form {
+  width: 90%;
+  max-width: 900px;
+  background: white;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Section titles */
+
+.deal-form h2 {
+  color: #6f4e37;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #fed8b1;
+  padding-bottom: 6px;
+}
+
+/* Grid layout */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* Inputs */
+
+.deal-form input,
+.deal-form select,
+.deal-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.deal-form input:focus,
+.deal-form select:focus,
+.deal-form textarea:focus {
+  border-color: #6f4e37;
+}
+
+/* Contact blocks */
+
+.contact-block {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Financial grid */
+
+.financial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Buttons */
+
+.form-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.save-btn {
+  background: #6f4e37;
+  color: #fed8b1;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.save-btn:hover {
+  opacity: 0.9;
+}
+
+.cancel-btn {
+  background: #bbb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  opacity: 0.9;
+}
+
+
+/* Champ texte dans le formulaire DealForm */
+.deal-form input,
+.deal-form textarea,
+.deal-form select {
+  color: #333333; /* texte visible */
+  background-color: #fff; /* fond blanc pour voir le texte */
+  border: 1px solid #ccc; /* optionnel : pour que ce soit plus visible */
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Placeholder couleur grise */
+.deal-form input::placeholder,
+.deal-form textarea::placeholder {
+  color: #999999;
+}
+
+/* Effet focus pour les inputs */
+.deal-form input:focus,
+.deal-form textarea:focus,
+.deal-form select:focus {
+  border-color: #6f4e37;
+  outline: none;
+}
+
+/* Add contact button */
+
+.add-contact-btn {
+  margin-top: 10px;
+  background: none;
+  border: 2px dashed #6f4e37;
+  color: #6f4e37;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-contact-btn:hover {
+  background: #6f4e37;
+  color: #fed8b1;
+}
+
+
+.fields-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes propres */
+  gap: 12px 40px;
+  margin-top: 15px;
+}
+
+.fields-checkboxes label {
+  display: grid;
+  grid-template-columns: 20px 1fr; /* colonne pour la case + texte */
+  align-items: center;
+  gap: 10px;
+  color: #000;
+  font-size: 14px;
+}
+
+.fields-checkboxes input[type="checkbox"] {
+  margin: 0;
+}
+
+.no-section-text {
+  color: #6f4e37; /* marron comme ton thème */
+  font-weight: 500;
+  text-align: center;
+  margin-top: 10px;
+}

@@ -1,13 +1,45 @@
-from controllers.dealController import DealController
+from fastapi import APIRouter
+from app.controllers.dealController import DealController
 
+router = APIRouter()
 deal_controller = DealController()
 
-ROUTES = {
-    "POST /deals": deal_controller.create_deal,
-    "GET /deals": deal_controller.get_all_deals,
-    "GET /deals/<id>": deal_controller.get_deal_by_id,
-    "PUT /deals/<id>": deal_controller.update_deal,
-    "DELETE /deals/<id>": deal_controller.delete_deal,
-    "GET /deals/filter/client": deal_controller.filter_by_client,
-    "GET /deals/filter/period": deal_controller.filter_by_period
-}
+
+@router.post("/deals")
+def create_deal(data: dict):
+    return deal_controller.create_deal(data)
+
+
+@router.get("/deals")
+def get_all_deals():
+    return deal_controller.get_all_deals()
+
+
+@router.get("/deals/{deal_id}")
+def get_deal_by_id(deal_id: str):
+    return deal_controller.get_deal_by_id(deal_id)
+
+
+@router.put("/deals/{deal_id}")
+def update_deal(deal_id: str, data: dict):
+    return deal_controller.update_deal(deal_id, data)
+
+
+@router.delete("/deals/{deal_id}")
+def delete_deal(deal_id: str):
+    return deal_controller.delete_deal(deal_id)
+
+
+@router.get("/deals/filter/client")
+def filter_by_client(client_name: str):
+    return deal_controller.filter_by_client(client_name)
+
+
+@router.get("/deals/filter/period")
+def filter_by_period(start_date: str, end_date: str):
+    return deal_controller.filter_by_period(start_date, end_date)
+
+
+@router.get("/deals/dealByTemplate/{template_id}")
+def getDealBytemplate(template_id):
+    return deal_controller.get_deal_by_template(template_id)
