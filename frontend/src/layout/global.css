@@ -173,7 +173,8 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* CENTRE TOUT LE CONTENU */
+  align-items: center; 
+  position: relative;
 }
 
 .manager-header {
@@ -182,8 +183,9 @@ body {
   max-width: 1100px;
   margin-bottom: 50px;
   display: flex;
-  justify-content: center; /* CENTRE LE TITRE */
+  justify-content: center; 
   align-items: center;
+  text-align: center;
 }
 
 .manager-header h1 {
@@ -191,13 +193,13 @@ body {
   font-size: 3rem; 
   color: #6f4e37;
   font-weight: bold;
-  white-space: nowrap; /* EMPÊCHE LE TITRE DE SE COUPER */
+  white-space: nowrap; 
 }
 
-/* BOUTON AJOUTER (HAUT À DROITE) */
 .add-btn { 
-  position: absolute;
-  right: 0;
+  position: absolute; 
+  top: -20px; 
+  right: 0; 
   background: #27ae60; 
   color: white; 
   padding: 12px 24px; 
@@ -205,6 +207,7 @@ body {
   border: none; 
   cursor: pointer;
   font-weight: bold;
+  font-size: 1.1rem;
   transition: 0.3s;
 }
 
@@ -222,7 +225,7 @@ body {
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   color: white;
-  margin: 0 auto 50px auto; /* CENTRE LE TABLEAU */
+  margin: 0 auto 50px auto; 
 }
 
 .manager-table th, 
@@ -232,6 +235,8 @@ body {
   color: #fed8b1;
   text-transform: uppercase;
   padding: 20px;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 .manager-table td, 
@@ -240,13 +245,15 @@ body {
   padding: 20px;
   text-align: center;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  vertical-align: middle;
 }
 
 /* --- ACTIONS & BADGES --- */
 .actions-cell {
   display: flex;
   justify-content: center;
-  gap: 10px; 
+  gap: 10px;               
+  align-items: center;
 }
 
 .edit-btn, .delete-btn {
@@ -255,21 +262,31 @@ body {
   border: none;
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
   min-width: 100px; 
+  transition: opacity 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   color: white;
 }
 
 .edit-btn { background: #3498db; }
 .delete-btn { background: #c0392b; }
+.edit-btn:hover, .delete-btn:hover { opacity: 0.85; }
 
 .badge {
   padding: 6px 15px;
   border-radius: 20px; 
   font-size: 12px;
   font-weight: bold;
+  display: inline-block;
 }
 
-.badge.NEGOTIATION { background: #f1c40f; color: #000; }
+.badge.NEGOTIATION { 
+  background: #f1c40f; 
+  color: #000; 
+}
 
 /* --- FILTRES --- */
 .filter-overlay {
@@ -294,155 +311,7 @@ body {
   font-weight: bold;
 }
 
-.add-btn { 
-  position: absolute; 
-  top: -20px; 
-  right: 0; 
-  background: #27ae60; 
-  color: white; 
-  padding: 12px 24px; 
-  border-radius: 5px; 
-  border: none; 
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.deals-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #6f4e37; 
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-.deals-table th, .deals-table td {
-  padding: 20px 15px;
-  text-align: center; 
-  vertical-align: middle;
-  border-bottom: 1px solid #eee;
-}
-
-.deals-table th {
-  background: #6f4e37;
-  color: #fed8b1;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-.edit-btn { 
-  background: #3498db; 
-  color: white; 
-  border: none; 
-  padding: 8px 16px; 
-  border-radius: 5px; 
-  margin-right: 8px; 
-  cursor: pointer; 
-  font-size: 1rem;
-}
-
-.delete-btn { 
-  background: #c0392b; 
-  color: white; 
-  border: none; 
-  padding: 8px 16px; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  font-size: 1rem;
-}
-
-.badge {
-  padding: 6px 15px;
-  border-radius: 20px; 
-  font-size: 12px;
-  font-weight: bold;
-  display: inline-block;
-}
-
-.badge.NEGOTIATION { 
-  background: #f1c40f; 
-  color: #000; 
-}
-
-.actions-cell {
-  display: flex;
-  justify-content: center;
-  gap: 10px;               
-  align-items: center;
-}
-
-.edit-btn, .delete-btn {
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  min-width: 100px; 
-  transition: opacity 0.2s;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.edit-btn {
-  background: #3498db;
-  color: white;
-}
-
-.delete-btn {
-  background: #c0392b;
-  color: white;
-}
-
-.edit-btn:hover, .delete-btn:hover {
-  opacity: 0.85;
-}
-
-
-.manager-container, .templates-manager-container {
-  padding-top: 50px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.manager-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.manager-table, .templates-table {
-  width: 90%;
-  max-width: 1100px;
-  border-collapse: collapse;
-  background: #6f4e37;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.manager-table th, .manager-table td,
-.templates-table th, .templates-table td {
-  padding: 20px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-}
-
-.manager-table th, .templates-table th {
-  background: #6f4e37;
-  color: #fed8b1;
-  text-transform: uppercase;
-}
-
-/* =========================
-   DEAL FORM
-========================= */
-
+/* --- DEAL FORM --- */
 .deal-form-container {
   padding-top: 120px;
   display: flex;
@@ -459,8 +328,6 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* Section titles */
-
 .deal-form h2 {
   color: #6f4e37;
   margin-top: 25px;
@@ -469,15 +336,11 @@ body {
   padding-bottom: 6px;
 }
 
-/* Grid layout */
-
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
-
-/* Inputs */
 
 .deal-form input,
 .deal-form select,
@@ -489,6 +352,7 @@ body {
   font-size: 14px;
   outline: none;
   background: #fff;
+  color: #333333;
 }
 
 .deal-form input:focus,
@@ -497,7 +361,10 @@ body {
   border-color: #6f4e37;
 }
 
-/* Contact blocks */
+.deal-form input::placeholder,
+.deal-form textarea::placeholder {
+  color: #999999;
+}
 
 .contact-block {
   display: grid;
@@ -506,15 +373,11 @@ body {
   margin-bottom: 10px;
 }
 
-/* Financial grid */
-
 .financial-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
-
-/* Buttons */
 
 .form-actions {
   margin-top: 30px;
@@ -533,9 +396,7 @@ body {
   font-weight: bold;
 }
 
-.save-btn:hover {
-  opacity: 0.9;
-}
+.save-btn:hover { opacity: 0.9; }
 
 .cancel-btn {
   background: #bbb;
@@ -545,39 +406,6 @@ body {
   border-radius: 6px;
   cursor: pointer;
 }
-
-.cancel-btn:hover {
-  opacity: 0.9;
-}
-
-
-/* Champ texte dans le formulaire DealForm */
-.deal-form input,
-.deal-form textarea,
-.deal-form select {
-  color: #333333; /* texte visible */
-  background-color: #fff; /* fond blanc pour voir le texte */
-  border: 1px solid #ccc; /* optionnel : pour que ce soit plus visible */
-  padding: 8px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-/* Placeholder couleur grise */
-.deal-form input::placeholder,
-.deal-form textarea::placeholder {
-  color: #999999;
-}
-
-/* Effet focus pour les inputs */
-.deal-form input:focus,
-.deal-form textarea:focus,
-.deal-form select:focus {
-  border-color: #6f4e37;
-  outline: none;
-}
-
-/* Add contact button */
 
 .add-contact-btn {
   margin-top: 10px;
@@ -596,21 +424,8 @@ body {
 }
 
 /* Responsive */
-
 @media (max-width: 900px) {
-
-  .form-grid {
+  .form-grid, .contact-block, .financial-grid {
     grid-template-columns: 1fr;
   }
-
-  .contact-block {
-    grid-template-columns: 1fr;
-  }
-
-  .financial-grid {
-    grid-template-columns: 1fr;
-  }
-
-
- 
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import pour la navigation
 import Navbar from "../../components/NavBar/NavBar";
 import { fetchDeals } from "../../services/Deals";
 import { fetchTemplates } from "../../services/Templates";
@@ -7,6 +8,7 @@ function Home() {
   const [deals, setDeals] = useState([]);
   const [templates, setTemplates] = useState([]);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const navigate = useNavigate(); // Hook de navigation
 
   const [clientFilter, setClientFilter] = useState("");
   const [dateType, setDateType] = useState("createdAt");
@@ -97,6 +99,9 @@ function Home() {
               {t.name}
             </button>
           ))}
+          <button className="create-btn" onClick={() => navigate("/templates")}>
+            + Create New Template
+          </button>
         </div>
 
         <div className="deals-display">
