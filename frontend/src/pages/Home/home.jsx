@@ -21,24 +21,19 @@ function Home() {
 
   const getValue = (obj, path) => path.split('.').reduce((acc, part) => acc && acc[part], obj);
 
-  // --- NOUVELLE FONCTION POUR GÉRER L'AFFICHAGE ---
   const renderValue = (val) => {
     if (val === undefined || val === null) return "N/A";
 
-    // Si c'est un tableau (ex: concurrents, tags, ou contacts)
     if (Array.isArray(val)) {
       if (val.length === 0) return "Aucun";
       
-      // Si c'est le tableau des contacts (objets complexes)
       if (typeof val[0] === 'object') {
         return val.map(c => `${c.firstName} ${c.lastName}`).join(", ");
       }
       
-      // Si c'est un tableau simple (ex: ["Salesforce", "Hubspot"])
       return val.join(", ");
     }
 
-    // Si c'est un booléen
     if (typeof val === "boolean") return val ? "Oui" : "Non";
 
     return val.toString();
@@ -72,7 +67,6 @@ function Home() {
                     {section.fields.map((field) => (
                       <p key={field}>
                         <strong>{selectedTemplate.labels[field] || field}:</strong>{" "}
-                        {/* ON UTILISE RENDERVALUE ICI */}
                         {renderValue(getValue(deal, field))}
                       </p>
                     ))}
