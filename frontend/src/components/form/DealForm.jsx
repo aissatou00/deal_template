@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../components/NavBar/NavBar";
-import { createDeal } from "../../services/Deals";
-import { useNavigate } from "react-router-dom";
+import { createDeal, updateDeal, fetchDealById } from "../../services/Deals";
+import { useNavigate, useParams } from "react-router-dom";
 
 function DealForm() {
   const navigate = useNavigate();
+  const { dealId } = useParams(); 
+  const isEdit = !!dealId;
 
   const [deal, setDeal] = useState({
     reference: "",
@@ -26,10 +28,8 @@ function DealForm() {
     currency: "EUR",
     probability: "",
     expectedCloseDate: "",
-
     contacts: [{ firstName: "", lastName: "", jobTitle: "", email: "", isDecisionMaker: false }],
     products: [{ name: "", quantity: 1, unitPrice: "", discountPercent: "", finalPrice: "" }],
-
     financials: {
       subtotal: "",
       discountGlobalPercent: "",
@@ -39,7 +39,6 @@ function DealForm() {
       estimatedCost: "",
       expectedProfit: ""
     },
-
     commercial: {
       needIdentified: false,
       competitors: "",
@@ -48,7 +47,6 @@ function DealForm() {
       nextStep: "",
       nextStepDate: ""
     },
-
     delivery: {
       deliveryMode: "",
       region: "",
@@ -58,7 +56,6 @@ function DealForm() {
       requiresTraining: false,
       requiresMigration: false
     },
-
     governance: {
       createdBy: "",
       approvedByManager: false,
@@ -66,10 +63,24 @@ function DealForm() {
       requiresFinanceValidation: false,
       isArchived: false
     },
-
     tags: "",
     notes: ""
   });
+
+  // Charger les données du deal si modification
+  useEffect(() => {
+    if (isEdit) {
+      const loadDeal = async () => {
+        try {
+          const data = await fetchDealById(dealId);
+          setDeal(data);
+        } catch (err) {
+          console.error("Erreur chargement deal:", err);
+        }
+      };
+      loadDeal();
+    }
+  }, [dealId, isEdit]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,19 +89,20 @@ function DealForm() {
 
   const handleNestedChange = (section, e) => {
     const { name, value } = e.target;
-    setDeal({
-      ...deal,
-      [section]: { ...deal[section], [name]: value }
-    });
+    setDeal({ ...deal, [section]: { ...deal[section], [name]: value } });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createDeal(deal);
+      if (isEdit) {
+        await updateDeal(dealId, deal);
+      } else {
+        await createDeal(deal);
+      }
       navigate("/deals");
     } catch (err) {
-      console.error("Erreur création deal:", err);
+      console.error("Erreur sauvegarde deal:", err);
     }
   };
 
@@ -100,7 +112,7 @@ function DealForm() {
 
       <div className="deals-manager-container">
         <header className="manager-header">
-          <h1>Nouveau Deal</h1>
+          <h1>{isEdit ? "Modifier Deal" : "Nouveau Deal"}</h1>
         </header>
 
         <form className="deal-form" onSubmit={handleSubmit}>
@@ -181,7 +193,7 @@ function DealForm() {
 
           <div className="form-actions">
             <button type="button" className="cancel-btn" onClick={() => navigate("/deals")}>Annuler</button>
-            <button type="submit" className="save-btn">Enregistrer</button>
+            <button type="submit" className="save-btn">{isEdit ? "Mettre à jour" : "Enregistrer"}</button>
           </div>
 
         </form>

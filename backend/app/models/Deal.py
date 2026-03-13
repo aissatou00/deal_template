@@ -18,7 +18,7 @@ class Deal(BaseModel):
         doc = dict(doc)  
         doc["_id"] = str(doc["_id"])
         if "createdAt" in doc:
-            doc["createdAt"] = doc["createdAt"].isoformat()
+            doc["createdAt"] = doc["createdAt"]
         return doc
 
     def serialize_list(self, docs):
@@ -27,8 +27,9 @@ class Deal(BaseModel):
    
     def create(self, data):
         data["createdAt"] = datetime.datetime.utcnow()
+        data["_id"] = str(ObjectId())  
         inserted_id = self.collection.insert_one(data).inserted_id
-        data["_id"] = str(inserted_id)
+        #data["_id"] = str(inserted_id)
         return data
 
     def get_all(self, filter={}):
@@ -36,11 +37,11 @@ class Deal(BaseModel):
         return self.serialize_list(docs)
 
     def get_by_id(self, obj_id):
-        doc = self.collection.find_one({"_id": ObjectId(obj_id)})
+        doc = self.collection.find_one({"_id": obj_id})
         return self.serialize(doc)
 
     def update(self, obj_id, data):
-        self.collection.update_one({"_id": ObjectId(obj_id)}, {"$set": data})
+        self.collection.update_one({"_id": obj_id}, {"$set": data})
         return self.get_by_id(obj_id)
 
     def delete(self, obj_id):
