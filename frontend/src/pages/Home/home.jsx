@@ -8,7 +8,6 @@ function Home() {
   const [templates, setTemplates] = useState([]);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
 
-  const [searchTerm, setSearchTerm] = useState("");
   const [clientFilter, setClientFilter] = useState("");
   const [dateType, setDateType] = useState("createdAt");
   const [startDate, setStartDate] = useState("");
@@ -17,10 +16,15 @@ function Home() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const [dealsData, templatesData] = await Promise.all([fetchDeals(), fetchTemplates()]);
+        const [dealsData, templatesData] = await Promise.all([
+          fetchDeals(),
+          fetchTemplates()
+        ]);
         setDeals(dealsData);
         setTemplates(templatesData);
-      } catch (err) { console.error(err); }
+      } catch (err) {
+        console.error(err);
+      }
     };
     getData();
   }, []);
@@ -28,11 +32,11 @@ function Home() {
   const getValue = (obj, path) => path.split('.').reduce((acc, part) => acc && acc[part], obj);
 
   const renderValue = (val) => {
-    if (val === undefined || val === null) return "N/A";
+    if (val === undefined || val === null || val === "") return "N/A";
     if (Array.isArray(val)) {
       if (val.length === 0) return "Aucun";
       if (typeof val[0] === 'object') {
-        return val.map(c => `${c.firstName} ${c.lastName}`).join(", ");
+        return val.map(c => `${c.firstName || ''} ${c.lastName || ''}`).join(", ");
       }
       return val.join(", ");
     }
@@ -41,12 +45,23 @@ function Home() {
   };
 
   const filteredDeals = deals.filter(deal => {
-    const matchesSearch = deal.title?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesClient = clientFilter === "" || deal.clientName === clientFilter;
+    
     const dealDate = new Date(deal[dateType]);
-    const matchesStart = !startDate || dealDate >= new Date(startDate);
-    const matchesEnd = !endDate || dealDate <= new Date(endDate);
-    return matchesSearch && matchesClient && matchesStart && matchesEnd;
+    
+    if (startDate) {
+      const start = new Date(startDate);
+      start.setHours(0, 0, 0, 0);
+      if (dealDate < start) return false;
+    }
+    
+    if (endDate) {
+      const end = new Date(endDate);
+      end.setHours(23, 59, 59, 999);
+      if (dealDate > end) return false;
+    }
+
+    return matchesClient;
   });
 
   const clients = [...new Set(deals.map(d => d.clientName))];
@@ -56,12 +71,6 @@ function Home() {
       <Navbar />
       
       <div className="filter-overlay">
-        <input 
-          type="text" 
-          placeholder="Rechercher les deals..." 
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
         <select value={clientFilter} onChange={(e) => setClientFilter(e.target.value)}>
           <option value="">Tous les clients</option>
           {clients.map(c => <option key={c} value={c}>{c}</option>)}
@@ -90,29 +99,39 @@ function Home() {
               {t.name}
             </button>
           ))}
-          <button className="create-btn">+ Create New Template</button>
+          <button className="create-btn" onClick={() => window.location.href='/templates'}>
+            + Create New Template
+          </button>
         </div>
 
-        {selectedTemplate && (
-          <div className="deals-display">
-            {filteredDeals.map((deal) => (
-              <div key={deal._id} className="deal-card">
-                <h2>{deal.title}</h2>
-                {selectedTemplate.sections.map((section, sIdx) => (
-                  <div key={sIdx} className="section-box">
-                    <h3>{section.name}</h3>
-                    {section.fields.map((field) => (
-                      <p key={field}>
-                        <strong>{selectedTemplate.labels[field] || field}:</strong>{" "}
-                        {renderValue(getValue(deal, field))}
-                      </p>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
+        <div className="deals-display">
+          {selectedTemplate ? (
+            filteredDeals.length > 0 ? (
+              filteredDeals.map((deal) => (
+                <div key={deal._id} className="deal-card">
+                  <h2>{deal.title}</h2>
+                  {selectedTemplate.sections.map((section, sIdx) => (
+                    <div key={sIdx} className="section-box">
+                      <h3>{section.name}</h3>
+                      <div className="fields-grid">
+                        {section.fields.map((field) => (
+                          <p key={field}>
+                            <strong>{selectedTemplate.labels?.[field] || field}:</strong>{" "}
+                            {renderValue(getValue(deal, field))}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))
+            ) : (
+              <div className="no-data">Aucun deal trouvé pour ces critères.</div>
+            )
+          ) : (
+            <div className="no-data">Sélectionnez un template à gauche pour afficher les deals.</div>
+          )}
+        </div>
       </div>
     </>
   );
