@@ -38,3 +38,8 @@ def filter_by_client(client_name: str):
 @router.get("/deals/filter/period")
 def filter_by_period(start_date: str, end_date: str):
     return deal_controller.filter_by_period(start_date, end_date)
+
+
+@router.get("/deals/dealByTemplate/{template_id}")
+def getDealBytemplate(template_id):
+    return deal_controller.get_deal_by_template(template_id)
