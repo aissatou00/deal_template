@@ -391,3 +391,178 @@ body {
   color: #fed8b1;
   text-transform: uppercase;
 }
+
+/* =========================
+   DEAL FORM
+========================= */
+
+.deal-form-container {
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.deal-form {
+  width: 90%;
+  max-width: 900px;
+  background: white;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Section titles */
+
+.deal-form h2 {
+  color: #6f4e37;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #fed8b1;
+  padding-bottom: 6px;
+}
+
+/* Grid layout */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* Inputs */
+
+.deal-form input,
+.deal-form select,
+.deal-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.deal-form input:focus,
+.deal-form select:focus,
+.deal-form textarea:focus {
+  border-color: #6f4e37;
+}
+
+/* Contact blocks */
+
+.contact-block {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Financial grid */
+
+.financial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Buttons */
+
+.form-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.save-btn {
+  background: #6f4e37;
+  color: #fed8b1;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.save-btn:hover {
+  opacity: 0.9;
+}
+
+.cancel-btn {
+  background: #bbb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  opacity: 0.9;
+}
+
+
+/* Champ texte dans le formulaire DealForm */
+.deal-form input,
+.deal-form textarea,
+.deal-form select {
+  color: #333333; /* texte visible */
+  background-color: #fff; /* fond blanc pour voir le texte */
+  border: 1px solid #ccc; /* optionnel : pour que ce soit plus visible */
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Placeholder couleur grise */
+.deal-form input::placeholder,
+.deal-form textarea::placeholder {
+  color: #999999;
+}
+
+/* Effet focus pour les inputs */
+.deal-form input:focus,
+.deal-form textarea:focus,
+.deal-form select:focus {
+  border-color: #6f4e37;
+  outline: none;
+}
+
+/* Add contact button */
+
+.add-contact-btn {
+  margin-top: 10px;
+  background: none;
+  border: 2px dashed #6f4e37;
+  color: #6f4e37;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-contact-btn:hover {
+  background: #6f4e37;
+  color: #fed8b1;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-block {
+    grid-template-columns: 1fr;
+  }
+
+  .financial-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+}

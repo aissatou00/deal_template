@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/NavBar/NavBar";
 import { fetchDeals, deleteDeal } from "../../services/Deals";
+import { useNavigate } from "react-router-dom";
 
 function DealsPage() {
   const [deals, setDeals] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadDeals();
@@ -17,6 +19,9 @@ function DealsPage() {
       console.error("Erreur chargement deals:", err);
     }
   };
+  const createNexDeal = async () => {
+    navigate("/DealForm");
+  }
 
   const handleDelete = async (id) => {
     if (window.confirm("Voulez-vous vraiment supprimer ce deal ?")) {
@@ -35,7 +40,7 @@ function DealsPage() {
       <div className="deals-manager-container">
         <header className="manager-header">
           <h1>Gestion des Métiers</h1>
-          <button className="add-btn" onClick={() => alert("Formulaire de création à venir")}>
+          <button className="add-btn" onClick={() => createNexDeal() }>
             + Nouveau Deal
           </button>
         </header>
