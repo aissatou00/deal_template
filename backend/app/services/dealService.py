@@ -35,3 +35,6 @@ class DealService:
     def filter_by_period(self, start_date, end_date):
         query = {"createdAt": {"$gte": start_date, "$lte": end_date}}
         return self.model.get_all(query)
+    
+
+    

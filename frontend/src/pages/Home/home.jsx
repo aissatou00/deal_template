@@ -8,6 +8,12 @@ function Home() {
   const [templates, setTemplates] = useState([]);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [clientFilter, setClientFilter] = useState("");
+  const [dateType, setDateType] = useState("createdAt");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -23,25 +29,55 @@ function Home() {
 
   const renderValue = (val) => {
     if (val === undefined || val === null) return "N/A";
-
     if (Array.isArray(val)) {
       if (val.length === 0) return "Aucun";
-      
       if (typeof val[0] === 'object') {
         return val.map(c => `${c.firstName} ${c.lastName}`).join(", ");
       }
-      
       return val.join(", ");
     }
-
     if (typeof val === "boolean") return val ? "Oui" : "Non";
-
     return val.toString();
   };
+
+  const filteredDeals = deals.filter(deal => {
+    const matchesSearch = deal.title?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesClient = clientFilter === "" || deal.clientName === clientFilter;
+    const dealDate = new Date(deal[dateType]);
+    const matchesStart = !startDate || dealDate >= new Date(startDate);
+    const matchesEnd = !endDate || dealDate <= new Date(endDate);
+    return matchesSearch && matchesClient && matchesStart && matchesEnd;
+  });
+
+  const clients = [...new Set(deals.map(d => d.clientName))];
 
   return (
     <>
       <Navbar />
+      
+      <div className="filter-overlay">
+        <input 
+          type="text" 
+          placeholder="Rechercher les deals..." 
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <select value={clientFilter} onChange={(e) => setClientFilter(e.target.value)}>
+          <option value="">Tous les clients</option>
+          {clients.map(c => <option key={c} value={c}>{c}</option>)}
+        </select>
+        <div className="date-group">
+          <select value={dateType} onChange={(e) => setDateType(e.target.value)}>
+            <option value="createdAt">Par date de création</option>
+            <option value="expectedCloseDate">Par date de closing</option>
+          </select>
+          <div className="date-inputs">
+            <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+          </div>
+        </div>
+      </div>
+
       <div className={`home-container ${selectedTemplate ? "shifted" : ""}`}>
         <div className="templates-sidebar">
           <h2>Templates</h2>
@@ -54,11 +90,12 @@ function Home() {
               {t.name}
             </button>
           ))}
+          <button className="create-btn">+ Create New Template</button>
         </div>
 
         {selectedTemplate && (
           <div className="deals-display">
-            {deals.map((deal) => (
+            {filteredDeals.map((deal) => (
               <div key={deal._id} className="deal-card">
                 <h2>{deal.title}</h2>
                 {selectedTemplate.sections.map((section, sIdx) => (

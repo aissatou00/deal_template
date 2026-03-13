@@ -1,17 +1,17 @@
-/* --- BASE & LAYOUT --- */
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fed8b1; /* Ton fond orange clair */
+  background-color: #fed8b1; 
   min-height: 100vh;
 }
 
-/* --- NAVBAR (Fixée en haut) --- */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #6f4e37; /* Marron foncé */
+  background-color: #6f4e37; 
   padding: 15px 40px;
   position: fixed; 
   top: 0;
@@ -38,25 +38,25 @@ body {
   color: #ecb176;
 }
 
-/* --- CONTAINER PRINCIPAL --- */
+
 .home-container {
   display: flex;
-  flex-direction: column; /* Par défaut au centre */
+  flex-direction: column; 
   align-items: center;
-  padding-top: 120px; /* Espace pour la navbar */
+  padding-top: 120px;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
 }
 
-/* LOGIQUE DE DÉCALAGE : Quand un template est sélectionné */
+
 .home-container.shifted {
-  flex-direction: row; /* Aligne Sidebar et Contenu côte à côte */
+  flex-direction: row; 
   align-items: flex-start;
   justify-content: flex-start;
   padding-left: 40px;
 }
 
-/* --- SIDEBAR DES TEMPLATES --- */
+
 .templates-sidebar {
   background: #ffffff;
   padding: 25px;
@@ -78,7 +78,7 @@ body {
   padding-bottom: 10px;
 }
 
-/* --- BOUTONS TEMPLATES --- */
+
 .template-btn {
   border: none;
   border-radius: 12px;
@@ -89,7 +89,7 @@ body {
   cursor: pointer;
   text-align: left;
   transition: all 0.3s ease;
-  background-color: #a67b5b; /* Couleur par défaut */
+  background-color: #a67b5b; 
 }
 
 .template-btn:hover {
@@ -97,21 +97,20 @@ body {
   filter: brightness(1.1);
 }
 
-/* Effet de décalage spécifique au bouton sélectionné */
 .template-btn.active {
-  transform: translateX(25px); /* Se décale vers la droite */
+  transform: translateX(25px); 
   box-shadow: -8px 0px 15px rgba(0,0,0,0.1);
   background-color: #6f4e37 !important;
   border-left: 5px solid #fed8b1;
 }
 
-/* Couleurs spécifiques (optionnel si tu veux garder tes couleurs) */
+
 .btn-blue { background-color: #2b82d3; }
 .btn-green { background-color: #44ab4a; }
 .btn-orange { background-color: #f18f35; }
 .btn-purple { background-color: #7a59ad; }
 
-/* --- ZONE D'AFFICHAGE DES DEALS (À DROITE) --- */
+
 .deals-display {
   flex: 1;
   margin-left: 50px;
@@ -127,7 +126,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- CARTES DES DEALS --- */
+
 .deal-card {
   background: white;
   padding: 25px;
@@ -161,7 +160,7 @@ body {
   font-weight: 600;
 }
 
-/* --- BOUTON CREATE --- */
+
 .create-btn {
   margin-top: 15px;
   background: none;
@@ -179,12 +178,48 @@ body {
   color: white;
 }
 
-/* --- MESSAGE D'ACCUEIL --- */
-.welcome-msg {
-  margin-top: 50px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  color: #6f4e37;
-  font-style: italic;
+
+.filter-overlay {
+  position: fixed;
+  top: 90px; 
+  right: 20px;
+  z-index: 1000;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 280px;
+  border: 1px solid #fed8b1;
+}
+
+.filter-overlay input, 
+.filter-overlay select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.filter-overlay input:focus {
+  border-color: #6f4e37;
+}
+
+.date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.date-inputs {
+  display: flex;
+  gap: 5px;
+}
+
+.date-inputs input {
+  width: 50%;
+  font-size: 12px;
 }
