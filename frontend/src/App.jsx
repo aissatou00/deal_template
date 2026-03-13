@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/home";
 import DealsPage from "./pages/Deal/Deal";
 import TemplatesPage from "./pages/Template/Template"; 
-//import TemplateCreate from "./pages/Template/CreateTemplate";
-//import TemplateEdit from "./pages/Template/EditTemplate";
+import CreateTemplate from "./pages/Template/CreateTemplate";
+import EditTemplate from "./pages/Template/EditTemplate";
 function App() {
   return (
     <Router>
@@ -11,6 +11,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/deals" element={<DealsPage />} />
         <Route path="/templates" element={<TemplatesPage />} />
+        <Route path="/templates/create" element={<CreateTemplate />} />
+        <Route path="/templates/edit/:templateId" element={<EditTemplate />} />
       </Routes>
     </Router>
   );

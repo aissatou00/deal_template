@@ -125,3 +125,16 @@ export const filterTemplatesByPeriod = async (startDate, endDate) => {
     throw error;
   }
 };
+
+
+
+export const fetchTemplateFields = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/fields-List`);
+    if (!response.ok) throw new Error("Erreur : " + response.status);
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};

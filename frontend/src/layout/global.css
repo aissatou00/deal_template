@@ -391,3 +391,143 @@ body {
   color: #fed8b1;
   text-transform: uppercase;
 }
+
+
+.create-template-container,
+.edit-template-container {
+  max-width: 900px;
+  margin: 120px auto 50px; 
+  padding: 2rem;
+  background-color: transparent;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: left;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.create-template-container h1,
+.edit-template-container h1 {
+  text-align: center;
+  color: #6f4e37;
+  margin-bottom: 1.5rem;
+}
+
+.create-template-container h3,
+.edit-template-container h3 {
+  color: #6f4e37;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.create-template-container label,
+.edit-template-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.create-template-container input[type="text"],
+.edit-template-container input[type="text"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.create-template-container input[type="text"]:focus,
+.edit-template-container input[type="text"]:focus {
+  border-color: #6f4e37;
+}
+
+.fields-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.fields-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 400;
+  color: #555;
+}
+
+
+.create-template-container button,
+.edit-template-container button {
+  background-color: #6f4e37;
+  color: #fed8b1;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.create-template-container button:hover,
+.edit-template-container button:hover {
+  background-color: #5a3f2e;
+}
+
+
+.sections-list {
+  margin-top: 1rem;
+  border-top: 1px solid #decba4;
+  padding-top: 1rem;
+}
+
+.sections-list div {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.sections-list button {
+  background-color: #c0392b;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+.sections-list button:hover {
+  background-color: #a32d23;
+}
+
+
+.create-template-container p,
+.edit-template-container p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+
+@media (max-width: 768px) {
+  .create-template-container,
+  .edit-template-container {
+    margin: 120px 15px 50px;
+    padding: 1.5rem;
+  }
+
+  .fields-checkboxes {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sections-list div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}

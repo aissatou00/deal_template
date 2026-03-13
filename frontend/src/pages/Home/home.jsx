@@ -99,9 +99,10 @@ function Home() {
               {t.name}
             </button>
           ))}
-          <button className="create-btn" onClick={() => window.location.href='/templates'}>
+          <button className="create-btn" onClick={() => window.location.href='/templates/create'}>
             + Create New Template
           </button>
+          
         </div>
 
         <div className="deals-display">

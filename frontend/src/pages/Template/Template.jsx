@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/NavBar/NavBar";
 import { fetchTemplates, deleteTemplate } from "../../services/Templates";
+import { useNavigate } from "react-router-dom";
 
 function Templates() {
   const [templates, setTemplates] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadTemplates();
@@ -33,14 +35,11 @@ function Templates() {
     <>
       <Navbar />
       <div className="templates-manager-container">
-        <button className="add-btn" onClick={() => alert("Nouveau Template")}>
-          + Nouveau Template
-        </button>
-
         <header className="manager-header">
           <h1>Gestion des Templates</h1>
+          
         </header>
-
+        
         <table className="templates-table">
           <thead>
             <tr>
@@ -54,7 +53,9 @@ function Templates() {
                 <tr key={t._id}>
                   <td>{t.name}</td>
                   <td>
-                    <button className="edit-btn">Modifier</button>
+                    <button className="edit-btn" onClick={() => navigate(`/templates/edit/${t._id}`)} >
+                      Modifier
+                    </button>
                     <button className="delete-btn" onClick={() => handleDelete(t._id)}>
                       Supprimer
                     </button>
