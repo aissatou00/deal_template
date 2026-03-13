@@ -1,9 +1,18 @@
-import { useEffect } from "react";
-import Home from "../src/pages/Home/home";
-import { fetchDeals } from "./services/Deals";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/home";
+import DealsPage from "./pages/Deal/Deal";
+import TemplatesPage from "./pages/Template/Template"; // Assure-toi que le chemin est correct
 
 function App() {
-  return <Home />;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/deals" element={<DealsPage />} />
+        <Route path="/templates" element={<TemplatesPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

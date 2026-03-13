@@ -223,3 +223,171 @@ body {
   width: 50%;
   font-size: 12px;
 }
+
+.deals-manager-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.manager-header {
+  text-align: center;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.manager-header h1 {
+  margin: 0;
+  font-size: 3.5rem; 
+  color: #6f4e37;
+  font-weight: bold;
+}
+
+.add-btn { 
+  position: absolute; 
+  top: -20px; 
+  right: 0; 
+  background: #27ae60; 
+  color: white; 
+  padding: 12px 24px; 
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.deals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #6f4e37; 
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.deals-table th, .deals-table td {
+  padding: 20px 15px;
+  text-align: center; 
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+}
+
+.deals-table th {
+  background: #6f4e37;
+  color: #fed8b1;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.edit-btn { 
+  background: #3498db; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 5px; 
+  margin-right: 8px; 
+  cursor: pointer; 
+  font-size: 1rem;
+}
+
+.delete-btn { 
+  background: #c0392b; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 1rem;
+}
+
+.badge {
+  padding: 6px 15px;
+  border-radius: 20px; 
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.badge.NEGOTIATION { 
+  background: #f1c40f; 
+  color: #000; 
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 10px;               
+  align-items: center;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 100px; 
+  transition: opacity 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-btn {
+  background: #3498db;
+  color: white;
+}
+
+.delete-btn {
+  background: #c0392b;
+  color: white;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 0.85;
+}
+
+
+.manager-container, .templates-manager-container {
+  padding-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.manager-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.manager-table, .templates-table {
+  width: 90%;
+  max-width: 1100px;
+  border-collapse: collapse;
+  background: #6f4e37;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.manager-table th, .manager-table td,
+.templates-table th, .templates-table td {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.manager-table th, .templates-table th {
+  background: #6f4e37;
+  color: #fed8b1;
+  text-transform: uppercase;
+}
