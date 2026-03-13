@@ -67,7 +67,6 @@ function DealForm() {
     notes: ""
   });
 
-  // Charger les données du deal si modification
   useEffect(() => {
     if (isEdit) {
       const loadDeal = async () => {
@@ -117,7 +116,7 @@ function DealForm() {
 
         <form className="deal-form" onSubmit={handleSubmit}>
 
-          {/* GENERAL INFO */}
+        
           <h2>Informations générales</h2>
           <div className="form-grid">
             <input name="reference" placeholder="Référence" value={deal.reference} onChange={handleChange} />
@@ -145,7 +144,7 @@ function DealForm() {
             <input type="date" name="expectedCloseDate" value={deal.expectedCloseDate} onChange={handleChange} />
           </div>
 
-          {/* FINANCIALS */}
+       
           <h2>Finances</h2>
           <div className="form-grid">
             <input name="subtotal" placeholder="Subtotal" value={deal.financials.subtotal} onChange={(e) => handleNestedChange("financials", e)} />
@@ -157,7 +156,7 @@ function DealForm() {
             <input name="expectedProfit" placeholder="Profit attendu" value={deal.financials.expectedProfit} onChange={(e) => handleNestedChange("financials", e)} />
           </div>
 
-          {/* COMMERCIAL */}
+        
           <h2>Commercial</h2>
           <div className="form-grid">
             <input name="competitors" placeholder="Concurrents (séparés par ,)" value={deal.commercial.competitors} onChange={(e) => handleNestedChange("commercial", e)} />
@@ -167,7 +166,7 @@ function DealForm() {
             <input type="date" name="nextStepDate" value={deal.commercial.nextStepDate} onChange={(e) => handleNestedChange("commercial", e)} />
           </div>
 
-          {/* DELIVERY */}
+  
           <h2>Delivery</h2>
           <div className="form-grid">
             <input name="deliveryMode" placeholder="Mode livraison" value={deal.delivery.deliveryMode} onChange={(e) => handleNestedChange("delivery", e)} />
@@ -177,17 +176,16 @@ function DealForm() {
             <input name="estimatedDeliveryWeeks" placeholder="Durée (semaines)" value={deal.delivery.estimatedDeliveryWeeks} onChange={(e) => handleNestedChange("delivery", e)} />
           </div>
 
-          {/* GOVERNANCE */}
+    
           <h2>Gouvernance</h2>
           <div className="form-grid">
             <input name="createdBy" placeholder="Créé par" value={deal.governance.createdBy} onChange={(e) => handleNestedChange("governance", e)} />
           </div>
 
-          {/* TAGS */}
+      
           <h2>Tags</h2>
           <input name="tags" placeholder="tags séparés par ," value={deal.tags} onChange={handleChange} />
 
-          {/* NOTES */}
           <h2>Notes</h2>
           <textarea name="notes" placeholder="Ajouter une note..." value={deal.notes} onChange={handleChange} />
 

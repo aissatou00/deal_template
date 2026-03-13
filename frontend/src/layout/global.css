@@ -173,8 +173,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  position: relative;
+  align-items: center; /* CENTRE TOUT LE CONTENU */
 }
 
 .manager-header {
@@ -183,9 +182,8 @@ body {
   max-width: 1100px;
   margin-bottom: 50px;
   display: flex;
-  justify-content: center; 
+  justify-content: center; /* CENTRE LE TITRE */
   align-items: center;
-  text-align: center;
 }
 
 .manager-header h1 {
@@ -193,13 +191,13 @@ body {
   font-size: 3rem; 
   color: #6f4e37;
   font-weight: bold;
-  white-space: nowrap; 
+  white-space: nowrap; /* EMPÊCHE LE TITRE DE SE COUPER */
 }
 
+/* BOUTON AJOUTER (HAUT À DROITE) */
 .add-btn { 
-  position: absolute; 
-  top: -20px; 
-  right: 0; 
+  position: absolute;
+  right: 0;
   background: #27ae60; 
   color: white; 
   padding: 12px 24px; 
@@ -207,7 +205,6 @@ body {
   border: none; 
   cursor: pointer;
   font-weight: bold;
-  font-size: 1.1rem;
   transition: 0.3s;
 }
 
@@ -225,7 +222,7 @@ body {
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   color: white;
-  margin: 0 auto 50px auto; 
+  margin: 0 auto 50px auto; /* CENTRE LE TABLEAU */
 }
 
 .manager-table th, 
@@ -235,8 +232,6 @@ body {
   color: #fed8b1;
   text-transform: uppercase;
   padding: 20px;
-  font-size: 14px;
-  letter-spacing: 1px;
 }
 
 .manager-table td, 
@@ -245,15 +240,13 @@ body {
   padding: 20px;
   text-align: center;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  vertical-align: middle;
 }
 
 /* --- ACTIONS & BADGES --- */
 .actions-cell {
   display: flex;
   justify-content: center;
-  gap: 10px;               
-  align-items: center;
+  gap: 10px; 
 }
 
 .edit-btn, .delete-btn {
@@ -262,31 +255,21 @@ body {
   border: none;
   cursor: pointer;
   font-weight: bold;
-  font-size: 14px;
   min-width: 100px; 
-  transition: opacity 0.2s;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
   color: white;
 }
 
 .edit-btn { background: #3498db; }
 .delete-btn { background: #c0392b; }
-.edit-btn:hover, .delete-btn:hover { opacity: 0.85; }
 
 .badge {
   padding: 6px 15px;
   border-radius: 20px; 
   font-size: 12px;
   font-weight: bold;
-  display: inline-block;
 }
 
-.badge.NEGOTIATION { 
-  background: #f1c40f; 
-  color: #000; 
-}
+.badge.NEGOTIATION { background: #f1c40f; color: #000; }
 
 /* --- FILTRES --- */
 .filter-overlay {
@@ -311,15 +294,129 @@ body {
   font-weight: bold;
 }
 
-/* --- DEAL FORM --- */
-.deal-form-container {
-  padding-top: 120px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+.add-btn { 
+  position: absolute; 
+  top: -20px; 
+  right: 0; 
+  background: #27ae60; 
+  color: white; 
+  padding: 12px 24px; 
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
-.deal-form {
+.deals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #6f4e37; 
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.deals-table th, .deals-table td {
+  padding: 20px 15px;
+  text-align: center; 
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+}
+
+.deals-table th {
+  background: #6f4e37;
+  color: #fed8b1;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.edit-btn { 
+  background: #3498db; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 5px; 
+  margin-right: 8px; 
+  cursor: pointer; 
+  font-size: 1rem;
+}
+
+.delete-btn { 
+  background: #c0392b; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 1rem;
+}
+
+.badge {
+  padding: 6px 15px;
+  border-radius: 20px; 
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.badge.NEGOTIATION { 
+  background: #f1c40f; 
+  color: #000; 
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 10px;               
+  align-items: center;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 100px; 
+  transition: opacity 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-btn {
+  background: #3498db;
+  color: white;
+}
+
+.delete-btn {
+  background: #c0392b;
+  color: white;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 0.85;
+}
+
+
+.manager-container, .templates-manager-container {
+  padding-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.manager-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.manager-table, .templates-table {
   width: 90%;
   max-width: 1100px;
   border-collapse: collapse;
@@ -327,8 +424,6 @@ body {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  text-align: left;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .manager-table th, .manager-table td,
@@ -344,142 +439,186 @@ body {
   text-transform: uppercase;
 }
 
+/* =========================
+   DEAL FORM
+========================= */
 
-.create-template-container,
-.edit-template-container {
-  max-width: 900px;
-  margin: 120px auto 50px; 
-  padding: 2rem;
-  background-color: transparent;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  text-align: left;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.create-template-container h1,
-.edit-template-container h1 {
-  text-align: center;
-  color: #6f4e37;
-  margin-bottom: 1.5rem;
-}
-
-.create-template-container h3,
-.edit-template-container h3 {
-  color: #6f4e37;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.create-template-container label,
-.edit-template-container label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #444;
-}
-
-.create-template-container input[type="text"],
-.edit-template-container input[type="text"] {
+.deal-form-container {
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
   width: 100%;
-  padding: 0.6rem 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  outline: none;
 }
 
-.create-template-container input[type="text"]:focus,
-.edit-template-container input[type="text"]:focus {
+.deal-form {
+  width: 90%;
+  max-width: 900px;
+  background: white;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Section titles */
+
+.deal-form h2 {
+  color: #6f4e37;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #fed8b1;
+  padding-bottom: 6px;
+}
+
+/* Grid layout */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* Inputs */
+
+.deal-form input,
+.deal-form select,
+.deal-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.deal-form input:focus,
+.deal-form select:focus,
+.deal-form textarea:focus {
   border-color: #6f4e37;
 }
 
-.fields-checkboxes {
+/* Contact blocks */
+
+.contact-block {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Financial grid */
+
+.financial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Buttons */
+
+.form-actions {
+  margin-top: 30px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.save-btn {
+  background: #6f4e37;
+  color: #fed8b1;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.save-btn:hover {
+  opacity: 0.9;
+}
+
+.cancel-btn {
+  background: #bbb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  opacity: 0.9;
+}
+
+
+/* Champ texte dans le formulaire DealForm */
+.deal-form input,
+.deal-form textarea,
+.deal-form select {
+  color: #333333; /* texte visible */
+  background-color: #fff; /* fond blanc pour voir le texte */
+  border: 1px solid #ccc; /* optionnel : pour que ce soit plus visible */
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Placeholder couleur grise */
+.deal-form input::placeholder,
+.deal-form textarea::placeholder {
+  color: #999999;
+}
+
+/* Effet focus pour les inputs */
+.deal-form input:focus,
+.deal-form textarea:focus,
+.deal-form select:focus {
+  border-color: #6f4e37;
+  outline: none;
+}
+
+/* Add contact button */
+
+.add-contact-btn {
+  margin-top: 10px;
+  background: none;
+  border: 2px dashed #6f4e37;
+  color: #6f4e37;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-contact-btn:hover {
+  background: #6f4e37;
+  color: #fed8b1;
+}
+
+
+.fields-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes propres */
+  gap: 12px 40px;
+  margin-top: 15px;
 }
 
 .fields-checkboxes label {
-  display: flex;
+  display: grid;
+  grid-template-columns: 20px 1fr; /* colonne pour la case + texte */
   align-items: center;
-  gap: 0.25rem;
-  font-weight: 400;
-  color: #555;
+  gap: 10px;
+  color: #000;
+  font-size: 14px;
 }
 
-
-.create-template-container button,
-.edit-template-container button {
-  background-color: #6f4e37;
-  color: #fed8b1;
-  border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1.2rem;
-  margin-top: 1rem;
-  margin-right: 0.5rem;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+.fields-checkboxes input[type="checkbox"] {
+  margin: 0;
 }
 
-.create-template-container button:hover,
-.edit-template-container button:hover {
-  background-color: #5a3f2e;
-}
-
-
-.sections-list {
-  margin-top: 1rem;
-  border-top: 1px solid #decba4;
-  padding-top: 1rem;
-}
-
-.sections-list div {
-  margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-
-.sections-list button {
-  background-color: #c0392b;
-  color: white;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.9rem;
-}
-
-.sections-list button:hover {
-  background-color: #a32d23;
-}
-
-
-.create-template-container p,
-.edit-template-container p {
-  color: #666;
-  font-size: 0.95rem;
-}
-
-
-@media (max-width: 768px) {
-  .create-template-container,
-  .edit-template-container {
-    margin: 120px 15px 50px;
-    padding: 1.5rem;
-  }
-
-  .fields-checkboxes {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .sections-list div {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
+.no-section-text {
+  color: #6f4e37; /* marron comme ton thème */
+  font-weight: 500;
+  text-align: center;
+  margin-top: 10px;
 }

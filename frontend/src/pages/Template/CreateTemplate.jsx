@@ -55,8 +55,7 @@ function CreateTemplate() {
 
     try {
       await createTemplate({ name, sections });
-      alert("Template créé avec succès !");
-      navigate("/templates"); 
+      navigate("/templates");
     } catch (err) {
       console.error("Erreur création template :", err);
       alert("Erreur lors de la création du template");
@@ -66,57 +65,73 @@ function CreateTemplate() {
   return (
     <>
       <Navbar />
-      <div className="create-template-container">
-        <h1>Créer un nouveau Template</h1>
+      <div className="deals-manager-container">
+        <header className="manager-header">
+          <h1>Créer un nouveau Template</h1>
+        </header>
 
-        <label>
-          Nom du template :
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Nom du template"
-          />
-        </label>
+        <form className="deal-form" onSubmit={handleSubmit}>
+          <h2>Informations générales</h2>
+          <div className="form-grid">
+            <input
+              type="text"
+              placeholder="Nom du template"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <h2>Nouvelle section</h2>
+          <div className="form-grid">
+            <input
+              type="text"
+              placeholder="Nom de la section"
+              value={newSectionName}
+              onChange={(e) => setNewSectionName(e.target.value)}
+            />
+          </div>
 
-        <h3>Nouvelle section</h3>
-        <input
-          type="text"
-          placeholder="Nom de la section"
-          value={newSectionName}
-          onChange={(e) => setNewSectionName(e.target.value)}
-        />
+          <div className="form-grid fields-checkboxes">
+            <p>Sélectionnez les champs à inclure :</p>
+            {availableFields.map((field) => (
+              <label key={field} className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={selectedFields.includes(field)}
+                  onChange={() => toggleField(field)}
+                />
+                {field}
+              </label>
+            ))}
+          </div>
 
-        <div className="fields-checkboxes">
-          <p>Cochez les champs à inclure dans cette section :</p>
-          {availableFields.map((field) => (
-            <label key={field}>
-              <input
-                type="checkbox"
-                checked={selectedFields.includes(field)}
-                onChange={() => toggleField(field)}
-              />
-              {field}
-            </label>
-          ))}
-        </div>
+          <div className="form-actions">
+            <button type="button" className="save-btn" onClick={addSection}>
+              Ajouter Section
+            </button>
+          </div>
 
-        <button type="button" onClick={addSection}>
-          Ajouter Section
-        </button>
+          <h2>Sections ajoutées</h2>
+          <div className="form-grid">
+            {sections.length > 0 ? (
+              sections.map((sec, idx) => (
+                <div key={idx} className="no-section-text">
+                  <strong  className="no-section-text" >{sec.name}</strong>: {sec.fields.join(", ")}
+                </div>
+              ))
+            ) : (
+              <p className="no-section-text">Aucune section ajoutée pour l'instant.</p>
+            )}
+          </div>
 
-        <h3>Sections ajoutées</h3>
-        {sections.length > 0 ? (
-          sections.map((sec, idx) => (
-            <div key={idx}>
-              <strong>{sec.name}</strong>: {sec.fields.join(", ")}
-            </div>
-          ))
-        ) : (
-          <p>Aucune section ajoutée pour l'instant.</p>
-        )}
-
-        <button onClick={handleSubmit}>Créer Template</button>
+          <div className="form-actions">
+            <button type="button" className="cancel-btn" onClick={() => navigate("/templates")}>
+              Annuler
+            </button>
+            <button type="submit" className="save-btn">
+              Créer Template
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );
